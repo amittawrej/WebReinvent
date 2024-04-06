@@ -20,6 +20,3 @@ export const authService = {
     }).then((response) => response.json()),
 };
 
-export const dataService = {
-  fetchData: () => fetch(`${BASE_URL}/data`).then((response) => response.json()),
-};

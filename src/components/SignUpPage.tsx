@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authService } from "../services/authService";
 import { login } from "../store/authSlice";
 
@@ -9,12 +9,14 @@ import { login } from "../store/authSlice";
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSignUp = async () => {
     const response = await authService.signUp({ email, password });
     if (response.token) {
       console.log(response.token)
       login({ email, token: response.token });
+      navigate("/dashboard");
     } else {
       alert('Invalid credentials. Please try again.');
     }
